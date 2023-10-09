@@ -48,7 +48,7 @@ class ProfileController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'sometimes|string|max:255',
-            'bio' => 'sometimes|nullable|string|max:100',
+            'bio' => 'sometimes|nullable|string|max:150',
             'age' => 'sometimes|integer|max:100',
             'gender_id' => 'sometimes|integer|in:1,2',
             'interests' => 'array',
