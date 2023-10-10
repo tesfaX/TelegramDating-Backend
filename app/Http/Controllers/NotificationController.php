@@ -26,7 +26,7 @@ class NotificationController extends Controller
         if ($shouldShare && env('TELEGRAM_APP_LAUNCH_LINK')) {
             $keyboard[0][] = [
                 'text' => 'Share to Friends',
-                'switch_inline_query' => env('TELEGRAM_APP_LAUNCH_LINK').'/app',
+                'switch_inline_query' => env('TELEGRAM_APP_LAUNCH_LINK'),
             ];
         }
 
@@ -48,5 +48,6 @@ class NotificationController extends Controller
         ];
 
         $response = Http::post($apiUrl, $data);
+
     }
 }
