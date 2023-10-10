@@ -26,9 +26,7 @@ class NotificationController extends Controller
         if ($shouldShare && env('TELEGRAM_APP_LAUNCH_LINK')) {
             $keyboard[0][] = [
                 'text' => 'Share to Friends',
-                'web_app' => [
-                    'url' => env('TELEGRAM_APP_LAUNCH_LINK')
-                ]
+                'switch_inline_query' => env('TELEGRAM_APP_LAUNCH_LINK'),
             ];
         }
 
