@@ -14,7 +14,7 @@ class TelegramBotController extends Controller
 
         if (isset($tgData['message']['text']) && $tgData['message']['text'] == '/start') {
             $chatId = $tgData['message']['chat']['id'];
-            $message = "<b>Welcome to the Telegram Dating bot</b> \n\n Open the app and connect with other people.";
+            $message = "<b>Welcome to Telegram Dating</b> \n\n Open the app and connect with other people.";
             NotificationController::sendMessage($chatId, $message);
         } else {
             if($tgData['pre_checkout_query']){

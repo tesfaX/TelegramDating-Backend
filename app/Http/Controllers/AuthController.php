@@ -30,7 +30,12 @@ class AuthController extends Controller
             $telegramData = $request->input('tg_data');
             $data_check_array = explode('&', rawurldecode($telegramData));
             if( $this->isValidData($data_check_array) ){
-                $userString = str_replace('user=', "", $data_check_array[1]);
+                $itemList = array();
+                foreach ($data_check_array as $item) {
+                    list($key, $value) = explode('=', $item);
+                    $itemList[$key] = $value;
+                }
+                $userString = $itemList['user'];
                 $telegramUser = json_decode($userString, true);
                 $telegramId = $telegramUser['id'];
 
