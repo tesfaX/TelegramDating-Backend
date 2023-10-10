@@ -56,12 +56,13 @@ class DatingController extends Controller
                     $filteredUser['photos'] = array_map(function ($photo) use ($baseUrl) {
                         return $baseUrl . "/api/photos/" . $photo;
                     }, $userPhotos);
-
-                    $filteredUser['liked_you'] = $likedYou;
-                    $filteredUser['gender'] = $user->gender;
                 } else {
                     $filteredUser['photos'] = null;
                 }
+                
+                $filteredUser['liked_you'] = $likedYou;
+                $filteredUser['gender'] = $user->gender;
+
                 return $filteredUser;
             }),
             'current_page' => $users->currentPage(),
