@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class NotificationController extends Controller
 {
-    public static function sendMessage($chatId, $message, $showButton = true)
+    public static function sendMessage($chatId, $message, $showButton = true, $shouldShare = false)
     {
         $botToken = env('TELEGRAM_BOT_TOKEN');
 
@@ -19,9 +19,16 @@ class NotificationController extends Controller
                     'web_app' => [
                         'url' => env('TELEGRAM_MINI_APP_URL')
                     ]
-                ]
+                ],
             ]
         ];
+
+        if ($shouldShare && env('TELEGRAM_APP_LAUNCH_LINK')) {
+            $keyboard[0][] = [
+                'text' => 'Share to Friends',
+                'switch_inline_query' => env('TELEGRAM_APP_LAUNCH_LINK').'/app',
+            ];
+        }
 
         $replyMarkup = [
             'inline_keyboard' => $keyboard,

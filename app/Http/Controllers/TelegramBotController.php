@@ -15,7 +15,7 @@ class TelegramBotController extends Controller
         if (isset($tgData['message']['text']) && $tgData['message']['text'] == '/start') {
             $chatId = $tgData['message']['chat']['id'];
             $message = "<b>Welcome to Telegram Dating</b> \n\n Open the app and connect with other people.";
-            NotificationController::sendMessage($chatId, $message);
+            NotificationController::sendMessage($chatId, $message, true, true);
         } else {
             if($tgData['pre_checkout_query']){
                 $precheckId = $tgData['pre_checkout_query']['id'];
@@ -33,7 +33,6 @@ class TelegramBotController extends Controller
                             $this->answerPreCheckoutQuery($precheckId, false, "Payment doesn't match the amount");
                         }
                     }
-
                 } else {
                     $this->answerPreCheckoutQuery($precheckId, false, "User doesn't exist");
                 }
